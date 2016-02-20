@@ -2,7 +2,15 @@
   "name": "eng-pron",
   "version": "0.0.0",
   "description": "KK & DJ Pronunciation",
-  "main": "index.js",
+  "main": "src/pron.js",
+  "engines": {
+    "iojs": ">= 1.0.0",
+    "node": ">= 0.12.0"
+  },
+  "preferGlobal": "true",
+  "bin": {
+    "pron": "index.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
