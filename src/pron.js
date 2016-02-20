@@ -2,6 +2,7 @@ var coroutine = require('co');
 var commander = require('commander').Command;
 var pkg       = require('../package.json');
 var yahoo     = require('./yahoo');
+var pbcopy    = require('./pbcopy');
 
 module.exports = coroutine.wrap(function * (process_argv) {
   var program = new commander('pron');
@@ -30,5 +31,10 @@ module.exports = coroutine.wrap(function * (process_argv) {
         console.log(word + ' (Not Found)\n');
       }
     }
+  }
+
+  // copy KK Pronunciation to the clipboard
+  if (program.args.length === 1) {
+    pbcopy(pron.kk);
   }
 });
