@@ -1,0 +1,30 @@
+{
+  "name": "eng-pron",
+  "version": "0.0.0",
+  "description": "KK & DJ Pronunciation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zlargon/pronunciation.git"
+  },
+  "keywords": [
+    "pronunciation",
+    "KK",
+    "DJ"
+  ],
+  "author": "zlargon",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zlargon/pronunciation/issues"
+  },
+  "homepage": "https://github.com/zlargon/pronunciation#readme",
+  "dependencies": {
+    "cheerio": "^0.20.0",
+    "co": "^4.6.0",
+    "commander": "^2.9.0",
+    "node-fetch": "^1.3.3"
+  }
+}
