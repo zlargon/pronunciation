@@ -1,10 +1,10 @@
-var coroutine = require('co');
+var _async_   = require('co').wrap;
 var commander = require('commander').Command;
 var pkg       = require('../package.json');
 var yahoo     = require('./yahoo');
 var pbcopy    = require('./pbcopy');
 
-module.exports = coroutine.wrap(function * (process_argv) {
+module.exports = _async_(function * (process_argv) {
   var program = new commander('pron');
   program
     .usage('<words...>')

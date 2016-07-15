@@ -1,8 +1,8 @@
-var coroutine = require('co');
-var fetch     = require('node-fetch');
-var cheerio   = require('cheerio');
+var _async_ = require('co').wrap;
+var fetch   = require('node-fetch');
+var cheerio = require('cheerio');
 
-module.exports = coroutine.wrap(function * (word) {
+module.exports = _async_(function * (word) {
   if (typeof word !== 'string' || word.length === 0) {
     throw new TypeError('word should be a string');
   }
