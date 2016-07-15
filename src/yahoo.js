@@ -1,6 +1,6 @@
-var _async_ = require('co').wrap;
-var fetch   = require('node-fetch');
-var cheerio = require('cheerio');
+const _async_ = require('co').wrap;
+const fetch   = require('node-fetch');
+const cheerio = require('cheerio');
 
 module.exports = _async_(function * (word) {
   if (typeof word !== 'string' || word.length === 0) {
@@ -10,18 +10,18 @@ module.exports = _async_(function * (word) {
   // replace '_' to ' ', and convert to lower case
   word = word.replace(/_/g, ' ').toLowerCase();
 
-  var url = `http://tw.dictionary.search.yahoo.com/search?p=${word}&fr2=dict`;
-  var res = yield fetch(url, {
+  const url = `http://tw.dictionary.search.yahoo.com/search?p=${word}&fr2=dict`;
+  const res = yield fetch(url, {
     timeout: 10 * 1000
   });
   if (res.status !== 200) {
     throw new Error(`request to ${url} failed, status code = ${res.status} (${request.statusText})`);
   }
 
-  var $ = cheerio.load(yield res.text());
-  var pron = $('#pronunciation_pos').text().trim();
+  const $ = cheerio.load(yield res.text());
+  let pron = $('#pronunciation_pos').text().trim();
   if (pron === '') {
-    var err = new Error(`the pronunciation of "${word}" is not found from yahoo`);
+    let err = new Error(`the pronunciation of "${word}" is not found from yahoo`);
     err.code = 'ENOENT';
     throw err;
   }

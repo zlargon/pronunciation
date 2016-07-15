@@ -1,4 +1,4 @@
-var exec = require('child_process').execSync;
+const exec = require('child_process').execSync;
 
 module.exports = function (text) {
   switch (process.platform) {

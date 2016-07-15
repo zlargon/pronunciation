@@ -1,11 +1,11 @@
-var _async_   = require('co').wrap;
-var commander = require('commander').Command;
-var pkg       = require('../package.json');
-var yahoo     = require('./yahoo');
-var pbcopy    = require('./pbcopy');
+const _async_   = require('co').wrap;
+const commander = require('commander').Command;
+const pkg       = require('../package.json');
+const yahoo     = require('./yahoo');
+const pbcopy    = require('./pbcopy');
 
 module.exports = _async_(function * (process_argv) {
-  var program = new commander('pron');
+  const program = new commander('pron');
   program
     .usage('<words...>')
     .version(pkg.version)
@@ -16,11 +16,12 @@ module.exports = _async_(function * (process_argv) {
     program.help();
   }
 
-  for (var i = 0; i < program.args.length; i++) {
-    var word = program.args[i];
+  let pron = null;
+  for (let i = 0; i < program.args.length; i++) {
+    const word = program.args[i];
 
     try {
-      var pron = yield yahoo(word);
+      pron = yield yahoo(word);
       console.log(word + ':');
       console.log('KK ' + pron.kk);
       console.log('DJ ' + pron.dj);
