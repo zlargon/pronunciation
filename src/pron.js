@@ -22,11 +22,8 @@ module.exports = _async_(function * (process_argv) {
 
     try {
       pron = yield yahoo(word);
-      console.log(word + ':');
-      console.log('KK ' + pron.kk);
-      console.log('DJ ' + pron.dj);
-      console.log('');
-
+      console.log(word);
+      console.log(pron.kk + '\n');
     } catch (e) {
       if (e.code === 'ENOENT') {
         console.log(word + ' (Not Found)\n');

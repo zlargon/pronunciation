@@ -9,7 +9,7 @@
   },
   "preferGlobal": "true",
   "bin": {
-    "pron": "index.js"
+    "kk": "index.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
