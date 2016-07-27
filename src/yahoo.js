@@ -26,14 +26,13 @@ module.exports = _async_(function * (word) {
     throw err;
   }
 
-  // check pronunciation format
-  if (/^KK\[.+\] DJ\[.+\] $/.test(pron)) {
-    throw new Error('unknown pronunciation: ' + pron);
-  }
+  const kk = pron.match(/KK\[[^\]]+\]/i);
+  const dj = pron.match(/DJ\[[^\]]+\]/i);
+  const ipa = pron.match(/IPA\[[^\]]+\]/i);
 
-  pron = pron.split(' ');
   return {
-    kk: pron[0].substr(2),
-    dj: pron[1].substr(2)
+    kk:  kk  === null ? null : kk[0].substr(2),
+    dj:  dj  === null ? null : dj[0].substr(2),
+    ipa: ipa === null ? null : ipa[0].substr(3)
   };
 });

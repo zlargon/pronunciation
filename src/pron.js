@@ -21,18 +21,31 @@ module.exports = _async_(function * (process_argv) {
     const word = program.args[i];
 
     try {
+      // 1. get pronunciation
       pron = yield yahoo(word);
+      if (pron.kk === null) {
+        console.log(`${word} (No KK)`);
+        for (k in pron) {
+          const v = pron[k];
+          if (v) console.log(`${k.toUpperCase()}: ${v}`)
+        }
+        console.log('');
+        continue;
+      }
+
+      // 2. print result on screen
       console.log(word);
       console.log(pron.kk + '\n');
+
+      // 3. copy KK pronunciation to the clipboard
+      if (program.args.length === 1) {
+        pbcopy(pron.kk);
+      }
+
     } catch (e) {
       if (e.code === 'ENOENT') {
         console.log(word + ' (Not Found)\n');
       }
     }
-  }
-
-  // copy KK Pronunciation to the clipboard
-  if (program.args.length === 1) {
-    pbcopy(pron.kk);
   }
 });
