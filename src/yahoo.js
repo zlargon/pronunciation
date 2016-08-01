@@ -7,21 +7,35 @@ module.exports = _async_(function * (word) {
     throw new TypeError('word should be a string');
   }
 
-  // replace '_' to ' ', and convert to lower case
-  word = word.replace(/_/g, ' ').toLowerCase();
+  // normalize
+  word = word.trim().toLowerCase().replace(/_/g, ' ');
 
   const url = `http://tw.dictionary.search.yahoo.com/search?p=${word}&fr2=dict`;
-  const res = yield fetch(url, {
-    timeout: 10 * 1000
-  });
+  const res = yield fetch(url, { timeout: 10 * 1000 });
   if (res.status !== 200) {
     throw new Error(`request to ${url} failed, status code = ${res.status} (${request.statusText})`);
   }
 
-  const $ = cheerio.load(yield res.text());
-  let pron = $('#pronunciation_pos').text().trim();
+  const html = yield res.text();
+  const $ = cheerio.load(html);
+
+  // check the word from title
+  const term = $('#term').text().trim().toLowerCase().replace(/·/g, '');
+  if (term !== word) {
+    let msg = `'${word}' is not found from yahoo`;
+    if (term !== '') {
+      msg += `. Do you mean the word '${term}' ?`;
+    }
+
+    const err = new Error(msg);
+    err.code = 'ENOENT';
+    throw err;
+  }
+
+  // get pronunciation
+  const pron = $('#pronunciation_pos').text().trim();
   if (pron === '') {
-    let err = new Error(`the pronunciation of "${word}" is not found from yahoo`);
+    const err = new Error(`the pronunciation of '${word}' is not found from yahoo`);
     err.code = 'ENOENT';
     throw err;
   }

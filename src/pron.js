@@ -16,15 +16,16 @@ module.exports = _async_(function * (process_argv) {
     program.help();
   }
 
-  let pron = null;
   for (let i = 0; i < program.args.length; i++) {
     const word = program.args[i];
 
     try {
       // 1. get pronunciation
-      pron = yield yahoo(word);
+      const pron = yield yahoo(word);
       if (pron.kk === null) {
         console.log(`${word} (No KK)`);
+
+        // show all pronunciation
         for (k in pron) {
           const v = pron[k];
           if (v) console.log(`${k.toUpperCase()}: ${v}`)
@@ -43,9 +44,8 @@ module.exports = _async_(function * (process_argv) {
       }
 
     } catch (e) {
-      if (e.code === 'ENOENT') {
-        console.log(word + ' (Not Found)\n');
-      }
+      console.log(e.code === 'ENOENT' ? e.message : e.stack);
+      console.log('');
     }
   }
 });
