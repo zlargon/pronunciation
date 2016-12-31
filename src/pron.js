@@ -1,8 +1,14 @@
 const _async_   = require('co').wrap;
 const commander = require('commander').Command;
+const ncp       = require('copy-paste');
 const pkg       = require('../package.json');
 const yahoo     = require('./yahoo');
-const pbcopy    = require('./pbcopy');
+
+function pbcopy (text) {
+  return new Promise ((resolve, reject) => {
+    ncp.copy(text, resolve);
+  });
+}
 
 module.exports = _async_(function * (process_argv) {
   const program = new commander('pron');
@@ -40,7 +46,7 @@ module.exports = _async_(function * (process_argv) {
 
       // 3. copy KK pronunciation to the clipboard
       if (program.args.length === 1) {
-        pbcopy(pron.kk);
+        yield pbcopy(pron.kk);
       }
 
     } catch (e) {
