@@ -1,7 +1,7 @@
 {
   "name": "eng-pron",
-  "version": "0.0.0",
-  "description": "KK & DJ Pronunciation",
+  "version": "0.0.0-alpha",
+  "description": "Query English Pronunciation",
   "main": "src/pron.js",
   "engines": {
     "iojs": ">= 1.0.0",
@@ -21,7 +21,8 @@
   "keywords": [
     "pronunciation",
     "KK",
-    "DJ"
+    "DJ",
+    "english"
   ],
   "author": "zlargon",
   "license": "MIT",
