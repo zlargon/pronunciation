@@ -10,7 +10,7 @@ module.exports = _async_(function * (word) {
   // normalize
   word = word.trim().toLowerCase().replace(/_/g, ' ');
 
-  const url = `http://tw.dictionary.search.yahoo.com/search?p=${word}&fr2=dict`;
+  const url = `https://tw.dictionary.search.yahoo.com/search?p=${word}&fr2=dict`;
   const res = yield fetch(url, { timeout: 10 * 1000 });
   if (res.status !== 200) {
     throw new Error(`request to ${url} failed, status code = ${res.status} (${request.statusText})`);
