@@ -11,7 +11,7 @@ function pbcopy (text) {
 }
 
 module.exports = _async_(function * (process_argv) {
-  const program = new commander('pron');
+  const program = new commander('kk');
   program
     .usage('<words...>')
     .version(pkg.version)
