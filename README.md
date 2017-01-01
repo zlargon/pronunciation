@@ -48,5 +48,9 @@ metropolitan
 [͵mɛtrəˋpɑlətn]
 ```
 
+## License
+
+MIT
+
 [npm-url]: https://nodei.co/npm/eng-pron
 [npm-img]: https://nodei.co/npm/eng-pron.png
