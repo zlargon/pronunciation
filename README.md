@@ -1,19 +1,23 @@
 # pronunciation
 
+[![][npm-img]][npm-url]
+
 Query English Pronunciation
 
-[![][npm-img]][npm-url]
+All the pronunciation are fetched from Yahoo online dictionary.
+
+https://tw.dictionary.search.yahoo.com/
 
 ## Installation
 
 ```
-$ npm install -g en-pron
+$ npm install -g eng-pron
 ```
 
 ## Usage
 
 ```
-Usage: pron <words...>
+Usage: kk <words...>
 
 Options:
 
@@ -23,19 +27,17 @@ Options:
 
 ## Example
 
-```bash
+```
 $ kk hello
-
 
 Output:
 
 hello
-[həˋlo]   => kk Pronunciation will be copy to clipboard, if there is only one
+[həˋlo]     => K.K. Pronunciation will be copy to clipboard, if there is only one
 ```
 
-```bash
+```
 $ kk metropolis metropolitan
-
 
 Output:
 
@@ -46,5 +48,5 @@ metropolitan
 [͵mɛtrəˋpɑlətn]
 ```
 
-[npm-url]: https://nodei.co/npm/en-pron
-[npm-img]: https://nodei.co/npm/en-pron.png
+[npm-url]: https://nodei.co/npm/eng-pron
+[npm-img]: https://nodei.co/npm/eng-pron.png
